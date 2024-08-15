@@ -1,0 +1,81 @@
+:root{
+  --my-font:  Sans-serif;
+}
+
+.rough{
+  border: 2px solid rgb(253, 253, 253);
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+  width: 100%;
+  padding: 15px;
+border: 1px solid #0c255262;
+  border-radius: 25px;
+  font-size: 14px;
+  box-sizing: border-box;
+  /* border: 2px solid rgb(223, 210, 210); */
+  outline: none;
+  margin: 0.5rem 0;
+  font-family: var(--my-font);
+}
+input::placeholder {
+  color: rgb(150, 150, 150); 
+  opacity: 1; 
+}
+select{
+  width: 100%  !important;
+  padding: 15px  !important;
+  border-radius: 25px !important;
+  font-size: 14px !important;
+  box-sizing: border-box !important;
+  /* border: 2px solid rgb(223, 210, 210) !important; */
+border: 1px solid #0c255262;
+margin: 0.4rem 0 !important;
+  outline: none !important;
+}
+.up-btn{
+  width: 100%;
+  background-color: #687be6;
+
+border: none;
+padding: 15px;
+margin: 20px 0;
+border-radius: 25px;
+color: white;
+font-size: 16px;
+cursor: pointer;
+}
+.up-btn:hover{
+  color: white;
+ background-color: #4e58d1;
+
+}
+.form-main{
+  border-radius: 20px;
+  box-shadow: 0 0 20px 8px rgba(128, 128, 128);
+ 
+  
+}
+
+.abc{
+  border-right: 1px solid white;
+}
+
+.social-login {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.social-icon {
+  border-radius: 50%;
+  background-color: #ddd;
+  font-size: 1.5rem;
+  color: #7c7676;
+  text-decoration: none;
+  padding: 0.2rem 0.5rem;
+}
+
+.social-icon:hover {
+  background-color: #ccc;
+}

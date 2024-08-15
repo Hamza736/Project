@@ -1,0 +1,43 @@
+ /* General styles */
+ body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+.header {
+  background-color: #333;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+}
+.logo {
+  width: 50px;
+  height: auto;
+  margin-right: 15px;
+}
+
+.site-title {
+  color: white;
+  font-size: 2rem;
+}
+
+.sbj-btn{
+  display: inline-block;
+  width: 20%;
+  margin: 5px 0;
+  padding: 10px 20px;
+  background-color: green;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  
+}
+
+.rough{
+  border: 1px solid black;
+
+}

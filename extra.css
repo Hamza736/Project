@@ -1,0 +1,360 @@
+:root{
+  --my-font:  Sans-serif;
+}
+
+
+
+.rough {
+  border: 2px solid black;
+  
+
+}
+
+.Demo {
+  margin-left: 10px;
+}
+
+#targeticon {
+  display: flex;
+
+}
+
+#targeticon img {
+  width: 3.5rem;
+  height: 3.5rem;
+  margin-left: 10px;
+  margin-top: 10px;
+  filter: brightness(0) saturate(100%) invert(16%) sepia(12%) saturate(4068%) hue-rotate(184deg) brightness(91%) contrast(105%);
+
+}
+
+
+/* swiper css start */
+
+.swiper {
+  /* margin: 100px auto; */
+  width: 520px;
+  height: 440px;
+}
+
+.swiper-slide {
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.swiper-slide:nth-child(1n) {
+  background-image:url(Portal/Assests/screenshot_2024-08-12_123025.jpg);
+  background-repeat:no-repeat;
+background-size:cover;
+  /* background-color: rgb(206, 17, 17); */
+}
+
+
+.swiper-slide:nth-child(2n) {
+  background-image:url(Portal/Assests/screenshot_2024-08-12_123025.jpg);
+background-repeat:no-repeat;
+  background-size:cover;
+
+  /* background-color: rgb(0, 140, 255); */
+}
+
+.swiper-slide:nth-child(3n) {
+  background-image:url(Portal/Assests/screenshot_2024-08-12_123025.jpg);
+background-repeat:no-repeat;
+  background-size:cover;
+
+}
+
+.swiper-slide:nth-child(4n) {
+  background-image:url(Portal/Assests/screenshot_2024-08-12_123025.jpg);
+background-repeat:no-repeat;
+  background-size:cover;
+
+}
+
+.swiper-slide:nth-child(5n) {
+  background-image:url(Portal/Assests/screenshot_2024-08-12_123025.jpg);
+background-repeat:no-repeat;
+  background-size:cover;
+
+}
+
+.swiper-slide:nth-child(6n) {
+  background-image:url(Portal/Assests/screenshot_2024-08-12_123025.jpg);
+background-repeat:no-repeat;
+  background-size:cover;
+
+}
+
+.swiper-slide:nth-child(7n) {
+  background-image:url(Portal/Assests/screenshot_2024-08-12_123025.jpg);
+  background-repeat:no-repeat;
+  background-size:cover;
+
+}
+
+.swiper-slide:nth-child(8n) {
+  background-image:url(Portal/Assests/screenshot_2024-08-12_123025.jpg);
+  background-repeat:no-repeat;
+  background-size:cover;
+
+}
+
+.swiper-slide:nth-child(9n) {
+  background-image:url(Portal/Assests/screenshot_2024-08-12_123025.jpg);
+background-repeat:no-repeat;
+  background-size:cover;
+
+}
+
+.swiper-slide:nth-child(10n) {
+  background-image:url(Portal/Assests/screenshot_2024-08-12_123025.jpg);
+background-repeat:no-repeat;
+  background-size:cover;
+
+}
+
+/* pop form css start here  */
+
+/* input[type="text"], input[type="password"], input[type="email"]  */
+#signUpName, #signUpEmail, #signUpPassword, #signUpConfirmPassword, #payment{
+  width: 100%;
+  padding: 15px;
+border: 1px solid #0c255262;
+  border-radius: 25px;
+  font-size: 14px;
+  box-sizing: border-box;
+  /* border: 2px solid rgb(223, 210, 210); */
+  outline: none;
+  margin: 0.5rem 0;
+  font-family: var(--my-font);
+}
+input::placeholder {
+  color: rgb(150, 150, 150); 
+  opacity: 1; 
+}
+/* Hide the actual file input */
+#fileUpload{
+  display: none;
+}
+
+/* Style the custom label */
+.custom-file-upload {
+  display: inline-block;
+  padding: 8px 20px;
+  cursor: pointer;
+  border-radius: 25px;
+  font-size: 14px;
+  margin-right: 10px;
+  background-color: white;
+  color: #0f0e0e;
+}
+
+.custom-file-upload:hover {
+  background-color: #4e58d1;
+  color: white;
+}
+
+/* Style for the file name display */
+#file-name {
+  font-size: 14px;
+  color: #555;
+}
+select{
+  width: 100%  !important;
+  padding: 15px  !important;
+  border-radius: 25px !important;
+  font-size: 14px !important;
+  box-sizing: border-box !important;
+  /* border: 2px solid rgb(223, 210, 210) !important; */
+border: 1px solid #0c255262;
+margin: 0.4rem 0 !important;
+  outline: none !important;
+}
+#up-btn{
+  width: 100%;
+  background-color: #687be6;
+border: none;
+padding: 15px;
+margin: 20px 0;
+border-radius: 25px;
+color: white;
+font-size: 16px;
+cursor: pointer;
+}
+#up-btn:hover{
+  color: white;
+ background-color: #4e58d1;
+
+}
+.form-main{
+  
+  /* margin: 5% auto 15% auto; */
+  /* background-color: #091630; */
+  background-color: #091630b0;
+  border-radius: 20px;
+  box-shadow: 0 0 20px 8px rgba(128, 128, 128); 
+  
+}
+
+.abc{
+  border-right: 1px solid white;
+}
+
+.social-login {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.social-icon {
+  border-radius: 50%;
+  background-color: #5b66e2;
+  font-size: 1.5rem;
+  color: white;
+  text-decoration: none;
+  padding: 0.2rem 0.5rem;
+}
+.social-icon i{
+  color: white;
+  padding: 5px 3px;
+}
+
+.social-icon:hover {
+  background-color: #4e58d1;
+}
+
+#signup{
+  border: none;
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 9999 !important; /* Sit on top */
+  left: 0;
+  top: 0;
+  overflow: auto; /* Enable scroll if needed */
+  padding-top: 60px;
+}
+
+.close-icon {
+  right: 25px;
+  top: 20px;
+  color: white;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close-icon i{
+  cursor: pointer;
+
+}
+.close-icon:hover,
+.close-icon:focus {
+  color: red;
+}
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens  */
+@media (max-width: 992px) {
+
+  .abc{
+    padding-bottom: 10px;
+    border-right: none;
+    border-bottom: 1px solid white;
+  }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* @media (max-width:768px) {
+  #targeticon img {
+      width: 5rem;
+      height: 5rem;
+  }
+} 
+@media (min-width:768px) {
+  #targeticon img {
+      width: 2rem;
+      height: 2rem;
+  }
+}  */
+/* @media (min-width:320px) {
+  #targeticon img {
+      width: 1.5rem;
+      height: 1.5rem;
+  }
+} */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+  #targeticon img {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+/* Media query for screen widths below 768px */
+@media (max-width: 767px) {
+
+  #targeticon img {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="CSS/style.css" />
+    <title>Login</title>
+  </head>
+
+  <body class="abc123">
+    <div class="container-fluid background">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <!-- logo Start -->
+            <div class="logo-container text-center">
+              <img src="Assests/download.jpeg" alt="Logo" class="logo" />
+            </div>
+            <!-- logo End -->
+
+            <!-- Sign In Form -->
+            <div class="form-container">
+              <div id="signInForm">
+                <h2 class="form-title">Sign in</h2>
+                <p class="form-subtitle">
+                  Stay updated on your professional world
+                </p>
+                <div class="form-group">
+                  <input
+                    type="email"
+                    id="signInEmail"
+                    name="email"
+                    class="form-control"
+                    placeholder="Your Email"
+                    required
+                  />
+                </div>
+
+                <div class="form-group position-relative">
+                  <input
+                    type="password"
+                    id="signInPassword"
+                    name="password"
+                    class="form-control"
+                    placeholder="Password"
+                    required
+                  />
+                  <i
+                    class="fa-solid fa-eye-slash password-toggle"
+                    id="togglePassword"
+                  ></i>
+                  <!-- <a href="#" class="forgot-password position-absolute" id="showForgotPassword">Forgot password?</a> -->
+                </div>
+                <div class="forgot-password">
+                  <a href="#" id="showForgotPassword">Forgot password?</a>
+                </div>
+
+                <a href="dasboard.html"
+                  ><button
+                    type="submit"
+                    class="btn btn-primary btn-block"
+                    id="sign-in-btn"
+                  >
+                    Sign In
+                  </button></a
+                >
+                <p class="switch-form">
+                  Don't have an account? <a href="#" id="showSignUp">Sign Up</a>
+                </p>
+              </div>
+
+              <!-- Sign in Form End-->
+
+              <!-- Sign up Form -->
+              <div id="signUpForm" style="display: none">
+                <h2 class="form-title">Registration</h2>
+                <p class="form-subtitle">Join us and start your journey</p>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="signUpName"
+                    name="name"
+                    class="form-control"
+                    placeholder="Full Name"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="email"
+                    id="signUpEmail"
+                    name="email"
+                    class="form-control"
+                    placeholder="Email"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="password"
+                    id="signUpPassword"
+                    name="password"
+                    class="form-control"
+                    placeholder="Password"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="password"
+                    id="signUpConfirmPassword"
+                    name="confirmPassword"
+                    class="form-control"
+                    placeholder="Confirm Password"
+                    required
+                  />
+                </div>
+
+                <!-- DROP DOWN Start -->
+                <div class="form-group">
+                  <!-- Select a course-->
+                  <select
+                    id="courseDropdown"
+                    name="courseDropdown"
+                    class="form-control"
+                    onchange="showPayment()"
+                  >
+                    <option value="">Select a course</option>
+                    <option value="Web Development">Web Development</option>
+                    <option value="Data Science">Data Science</option>
+                    <option value="Graphic Design">Graphic Design</option>
+                  </select>
+                </div>
+
+                <!--Course Payment: -->
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="payment"
+                    name="payment"
+                    class="form-control"
+                    placeholder="Course Payment"
+                    readonly
+                  />
+                </div>
+
+                <!-- DROP DOWN END -->
+
+                <div class="form-group">
+                  <input
+                    type="file"
+                    id="fileUpload"
+                    name="fileUpload"
+                    class="form-control"
+                  />
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">
+                  Sign Up
+                </button>
+                <p class="switch-form">
+                  Already have an account?
+                  <a href="#" id="showSignIn">Sign In</a>
+                </p>
+              </div>
+              <!-- sign up Form End -->
+
+              <!-- Forget Password Form Start -->
+              <div id="forgotPasswordForm" style="display: none">
+                <h2 class="form-title">Forgot Password</h2>
+                <p class="form-subtitle">
+                  Enter your email or phone number to reset your password
+                </p>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="forgotPasswordEmail"
+                    name="emailOrPhone"
+                    class="form-control"
+                    placeholder="Email or Phone"
+                    required
+                  />
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                  Reset Password
+                </button>
+                <p class="switch-form">
+                  <a href="#" id="backToSignIn">Back to Sign In</a>
+                </p>
+              </div>
+              <!-- Forget Password Form End -->
+            </div>
+
+            <div class="social-login text-center">
+              <a href="#" class="social-icon">
+                <i class="fa-brands fa-facebook"></i>
+              </a>
+
+              <a href="#" class="social-icon">
+                <i class="fa-brands fa-linkedin"></i>
+              </a>
+
+              <a href="#" class="social-icon">
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript file -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="JS/script.js"></script>
+  </body>
+</html>
