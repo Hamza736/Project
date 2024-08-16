@@ -15,7 +15,7 @@
     />
     <link rel="profile" href="https://gmpg.org/xfn/11" />
     <link rel="pingback" href="../xmlrpc.html" />
-    <title>Blog &#8211; Diagsis</title>
+    <title>Education News &#8211; Portal </title>
     <meta name="robots" content="max-image-preview:large" />
     <link
       rel="alternate"
@@ -5512,6 +5512,48 @@
       src="../wp-content/plugins/jeg-elementor-kit/assets/js/elements/mailchimp61da.js?ver=2.6.2"
       id="jkit-element-mailchimp-js"
     ></script>
+    <script>
+
+      // JavaScript to handle login validation
+    document.querySelector('.login-btn').addEventListener('click', handleLogin);
+    
+    // Add keydown event listener to the password field
+    document.getElementById('headerPassword').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            handleLogin(event);
+        }
+    });
+    
+    // Function to handle login
+    function handleLogin(event) {
+        event.preventDefault(); // Prevent the form from submitting
+    
+        // Get email and password values
+        const email = document.getElementById('headerEmail').value;
+        const password = document.getElementById('headerPassword').value;
+    
+        // Simple validation
+        if (validateEmail(email) && validatePassword(password)) {
+          //  alert('Login successful!');
+            // Redirect to another page or perform any other action
+            window.location.href = "../Portal/dasboard.html"; // Example of redirecting to a dashboard
+        } else {
+            alert('Please enter a valid email and password.');
+        }
+    }
+    
+    // Function to validate email
+    function validateEmail(email) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailPattern.test(email);
+    }
+    
+    // Function to validate password (example: minimum 6 characters)
+    function validatePassword(password) {
+        return password.length >= 6;
+    }
+    
+    </script> 
   </body>
 
   <!-- Mirrored from templatekit.jegtheme.com/diagsis/blog/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 06 Aug 2024 10:37:43 GMT -->
