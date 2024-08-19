@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+  </head>
+  <body>
+  
+
+
+    <div class="quiz-container">
+      <div class="first-row">
+        <div class="question-number">
+          mcqs
+          <p><span class="q-no"></span>/<span class="total-qs"></span></p>
+        </div>
+        <div class="subject-name">
+          <h4>KMU-CAT<span> Physics</span></h4>
+          <h5>CHAPTER: Electromegnetic</h5>
+        </div>
+        <!-- <div class="save-button">
+          <i class="fa-regular fa-bookmark"></i>
+        </div> -->
+      </div>
+      <div class="question-year">Year: 2021</div>
+      <div class="question-text">
+        <span class="question-label"></span>
+        <p class="cur-q"></p>
+      </div>
+
+      <div class="options-container">
+        <div class="option" onclick="selectOption(this)" data-correct="false">
+          <p><span class="option-label">A</span> <span class="option-label-2"></span></p> 
+          
+        </div>
+        <div class="option" onclick="selectOption(this)" data-correct="false">
+          <p><span class="option-label">B</span> <span class="option-label-2"></span></p> 
+          
+        </div>
+        <div class="option" onclick="selectOption(this)" data-correct="true">
+          <p><span class="option-label">C</span> <span class="option-label-2"></span></p> 
+          
+        </div>
+        <div class="option" onclick="selectOption(this)" data-correct="false">
+          <p><span class="option-label">D</span> <span class="option-label-2"></span></p> 
+          
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button class="btn-previous" onclick="handlePrevious()">
+          Previous
+        </button>
+        <button class="btn-home">Home</button>
+        <button class="btn-next" onclick="nextQuestion()">Next</button>
+      </div>
+    </div> 
+
+  <div class="explanation-container" id="explanation">
+    <div class="question-text">
+      What is the speed of electromagnetic waves in a vacuum?
+    </div>
+
+    <h3>Correct Answer: C</h3>
+    <p>
+      Explanation: Electromagnetic waves, including light, propagate through a
+      vacuum at a speed of approximately 3 x 10^8 meters per second, which is
+      a fundamental constant of the universe.
+    </p>
+    <div class="action-buttons">
+      <button class="btn-previous-2">Previous</button>
+      <button class="btn-home">Home</button>
+      <button class="btn-next-explanation">Next</button>
+    </div>
+  </div> 
+
+
+
+  <script>
+
+let curQNo = document.querySelector(".q-no");
+let totalQNo = document.querySelector(".total-qs");
+
+let questions = [
+  {
+    question: "The velocity of a projectile at the initial point and final point are inclined at an angle. The angle is:",
+    options: ["90°", "60°", "120°", "45°"],
+    correctAnswer: "90°",
+    explanation: "When a projectile is launched and lands on the same horizontal level, the angle between its initial velocity vector and final velocity vector is 90°. This is because the horizontal component of the velocity remains constant throughout the motion, but the vertical component of the velocity changes direction (from upward to downward). At the highest point of the trajectory, the vertical component of the velocity is zero, and the initial and final velocity vectors are perpendicular to each other. Thus, the correct answer is 90°.",
+  },
+  {
+    question: "The path of a projectile is:",
+    options: ["Parabola", "Hyperbola", "Ellipse", "Straight line"],
+    correctAnswer: "Parabola",
+    explanation: "The path of a projectile under the influence of gravity (assuming no air resistance) is a parabola. This can be derived from the kinematic equations of motion. The horizontal motion of the projectile is uniform (constant velocity), while the vertical motion is uniformly accelerated (due to gravity). When these two motions are combined, the resulting trajectory is a parabolic path. Thus, the correct answer is Parabola.",
+  },
+  {
+    question: " A stone thrown horizontally from the top of a tall building follows a path that is:",
+    options: ["Circular", "Made of two straight line segments", "Hyperbolic", "Parabolic"],
+    correctAnswer: "Parabolic",
+    explanation: `A stone thrown horizontally follows a parabolic path due to the combination of uniform horizontal velocity and constant vertical acceleration under gravity. The motion in the horizontal direction is uniform, while in the vertical direction, it's accelerated (projectile motion).
+
+`,
+  },
+  {
+    question: " A hunter aiming at a bird in a tree should aim: ",
+    options: ["A little above the bird", "A little below", "Exactly at the bird", "Very high "],
+    correctAnswer: "Very high ",
+    explanation: "Due to gravity, the bullet will drop below the line of sight after leaving the gun barrel. Therefore, to hit the bird, the hunter should aim slightly above the target, accounting for the drop.",
+  },
+  {
+    question: "If a simple pendulum is taken from Earth to the Moon, its period:",
+    options: ["Increases", "Decreases", " Remains the same","Become zero"],
+    correctAnswer: "Increases",
+    explanation: "The period of a simple pendulum is given by T = 2π√(L/g). Since the gravitational acceleration g on the Moon is about 1/6th that on Earth, the period will increase.",
+  },
+  
+  // Add more questions as needed
+];
+
+totalQNo.innerText = questions.length;
+
+let selectedOption = null;
+let currentMCQ = 0;
+
+function selectOption(option) {
+  if (selectedOption) {
+    selectedOption.classList.remove("selected");
+  }
+  selectedOption = option;
+  option.classList.add("selected");
+}
+
+function showMCQ(index) {
+  curQNo.innerText = index + 1;
+  const questionData = questions[index];
+  document.querySelector(".cur-q").textContent = questionData.question;
+  const options = document.querySelectorAll(".option-label-2");
+  options.forEach((option, i) => {
+    option.textContent = questionData.options[i];
+    option.setAttribute(
+      "data-correct",
+      questionData.options[i] === questionData.correctAnswer
+    );
+    option.classList.remove("selected", "correct", "wrong");
+  });
+}
+
+function nextQuestion() {
+  if (!selectedOption) {
+    alert("Please select an option!");
+    return;
+  }
+  const isCorrect = selectedOption.getAttribute("data-correct") === "true";
+  if (isCorrect) {
+    selectedOption.classList.add("correct");
+  } else {
+    selectedOption.classList.add("wrong");
+    document
+      .querySelector('.option[data-correct="true"]')
+      .classList.add("correct");
+  }
+
+  setTimeout(function () {
+    document.querySelector(".quiz-container").style.display = "none";
+    document.getElementById("explanation").style.display = "block";
+    document.querySelector("#explanation .question-text").textContent =
+      questions[currentMCQ].question;
+    document.querySelector(
+      "#explanation h3"
+    ).textContent = `Correct Answer: ${questions[currentMCQ].correctAnswer}`;
+    document.querySelector("#explanation p").textContent =
+      questions[currentMCQ].explanation;
+  }, 2000);
+}
+
+function handleNext() {
+  currentMCQ++;
+  if (currentMCQ >= questions.length) {
+    currentMCQ = questions.length - 1; // Stay at the last question
+  }
+  document.querySelector(".quiz-container").style.display = "block";
+  document.getElementById("explanation").style.display = "none";
+  selectedOption = null;
+  showMCQ(currentMCQ);
+}
+
+function handlePrevious() {
+  currentMCQ--;
+  if (currentMCQ <= 0) {
+    currentMCQ = 0; // Stay at the first question
+  }
+  document.querySelector(".quiz-container").style.display = "block";
+  document.getElementById("explanation").style.display = "none";
+  selectedOption = null;
+  showMCQ(currentMCQ);
+}
+
+document
+  .querySelector(".btn-next-explanation")
+  .addEventListener("click", handleNext);
+document
+  .querySelector(".btn-previous-2")
+  .addEventListener("click", handlePrevious);
+console.log(currentMCQ);
+
+showMCQ(currentMCQ);
+
+  </script>
+  </body>
+</html>

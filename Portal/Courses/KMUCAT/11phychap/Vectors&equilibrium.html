@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+  </head>
+  <body>
+  
+
+
+    <div class="quiz-container">
+      <div class="first-row">
+        <div class="question-number">
+          mcqs
+          <p><span class="q-no"></span>/<span class="total-qs"></span></p>
+        </div>
+        <div class="subject-name">
+          <h4>KMU-CAT<span> Physics</span></h4>
+          <h5>CHAPTER: Electromegnetic</h5>
+        </div>
+        <!-- <div class="save-button">
+          <i class="fa-regular fa-bookmark"></i>
+        </div> -->
+      </div>
+      <div class="question-year">Year: 2021</div>
+      <div class="question-text">
+        <span class="question-label"></span>
+        <p class="cur-q"></p>
+      </div>
+
+      <div class="options-container">
+        <div class="option" onclick="selectOption(this)" data-correct="false">
+          <p><span class="option-label">A</span> <span class="option-label-2"></span></p> 
+          
+        </div>
+        <div class="option" onclick="selectOption(this)" data-correct="false">
+          <p><span class="option-label">B</span> <span class="option-label-2"></span></p> 
+          
+        </div>
+        <div class="option" onclick="selectOption(this)" data-correct="true">
+          <p><span class="option-label">C</span> <span class="option-label-2"></span></p> 
+          
+        </div>
+        <div class="option" onclick="selectOption(this)" data-correct="false">
+          <p><span class="option-label">D</span> <span class="option-label-2"></span></p> 
+          
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button class="btn-previous" onclick="handlePrevious()">
+          Previous
+        </button>
+        <button class="btn-home">Home</button>
+        <button class="btn-next" onclick="nextQuestion()">Next</button>
+      </div>
+    </div> 
+
+  <div class="explanation-container" id="explanation">
+    <div class="question-text">
+      What is the speed of electromagnetic waves in a vacuum?
+    </div>
+
+    <h3>Correct Answer: C</h3>
+    <p>
+      Explanation: Electromagnetic waves, including light, propagate through a
+      vacuum at a speed of approximately 3 x 10^8 meters per second, which is
+      a fundamental constant of the universe.
+    </p>
+    <div class="action-buttons">
+      <button class="btn-previous-2">Previous</button>
+      <button class="btn-home">Home</button>
+      <button class="btn-next-explanation">Next</button>
+    </div>
+  </div> 
+
+
+
+  <script>
+
+let curQNo = document.querySelector(".q-no");
+let totalQNo = document.querySelector(".total-qs");
+
+let questions = [
+  {
+    question: "Which of the following is a scalar quantity?",
+    options: ["Work", "Force ", "Displacement ", "Velocity"],
+    correctAnswer: "Work",
+    explanation: "A scalar quantity is a physical quantity that has only magnitude and no direction. **Work** is a scalar quantity because it is defined as the dot product of force and displacement, which results in a scalar (magnitude only). Force, displacement, and velocity are all vector quantities, as they have both magnitude and direction. Therefore, the correct answer is **Work**.",
+  },
+  {
+    question: "The magnitude of J × K is:",
+    options: ["1", "2", "∞", "none"],
+    correctAnswer: "2",
+    explanation: "J × K refers to the cross product of two unit vectors in a Cartesian coordinate system. Assuming J and K represent standard unit vectors i, j, or k, the cross product magnitude depends on their relative directions. If J = i and K = j, |J × K| = |k| = 1. If both vectors are scaled by 2, then |J × K| = 2.",
+  },
+  {
+    question: "If the dot product of two nonzero vectors A and B is zero, then the magnitude of their cross product is ",
+    options: ["AB", "0", "1", "-AB"],
+    correctAnswer: "AB",
+    explanation: "The dot product being zero indicates that vectors A and B are perpendicular to each other. The magnitude of the cross product is given by AB sin(θ). Since θ = 90°, sin(90°) = 1, so the magnitude is simply AB.",
+  },
+  // Add more questions as needed
+];
+
+totalQNo.innerText = questions.length;
+
+let selectedOption = null;
+let currentMCQ = 0;
+
+function selectOption(option) {
+  if (selectedOption) {
+    selectedOption.classList.remove("selected");
+  }
+  selectedOption = option;
+  option.classList.add("selected");
+}
+
+function showMCQ(index) {
+  curQNo.innerText = index + 1;
+  const questionData = questions[index];
+  document.querySelector(".cur-q").textContent = questionData.question;
+  const options = document.querySelectorAll(".option-label-2");
+  options.forEach((option, i) => {
+    option.textContent = questionData.options[i];
+    option.setAttribute(
+      "data-correct",
+      questionData.options[i] === questionData.correctAnswer
+    );
+    option.classList.remove("selected", "correct", "wrong");
+  });
+}
+
+function nextQuestion() {
+  if (!selectedOption) {
+    alert("Please select an option!");
+    return;
+  }
+  const isCorrect = selectedOption.getAttribute("data-correct") === "true";
+  if (isCorrect) {
+    selectedOption.classList.add("correct");
+  } else {
+    selectedOption.classList.add("wrong");
+    document
+      .querySelector('.option[data-correct="true"]')
+      .classList.add("correct");
+  }
+
+  setTimeout(function () {
+    document.querySelector(".quiz-container").style.display = "none";
+    document.getElementById("explanation").style.display = "block";
+    document.querySelector("#explanation .question-text").textContent =
+      questions[currentMCQ].question;
+    document.querySelector(
+      "#explanation h3"
+    ).textContent = `Correct Answer: ${questions[currentMCQ].correctAnswer}`;
+    document.querySelector("#explanation p").textContent =
+      questions[currentMCQ].explanation;
+  }, 2000);
+}
+
+function handleNext() {
+  currentMCQ++;
+  if (currentMCQ >= questions.length) {
+    currentMCQ = questions.length - 1; // Stay at the last question
+  }
+  document.querySelector(".quiz-container").style.display = "block";
+  document.getElementById("explanation").style.display = "none";
+  selectedOption = null;
+  showMCQ(currentMCQ);
+}
+
+function handlePrevious() {
+  currentMCQ--;
+  if (currentMCQ <= 0) {
+    currentMCQ = 0; // Stay at the first question
+  }
+  document.querySelector(".quiz-container").style.display = "block";
+  document.getElementById("explanation").style.display = "none";
+  selectedOption = null;
+  showMCQ(currentMCQ);
+}
+
+document
+  .querySelector(".btn-next-explanation")
+  .addEventListener("click", handleNext);
+document
+  .querySelector(".btn-previous-2")
+  .addEventListener("click", handlePrevious);
+console.log(currentMCQ);
+
+showMCQ(currentMCQ);
+
+  </script>
+  </body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+  </head>
+  <body>
+  
+
+
+    <div class="quiz-container">
+      <div class="first-row">
+        <div class="question-number">
+          mcqs
+          <p><span class="q-no"></span>/<span class="total-qs"></span></p>
+        </div>
+        <div class="subject-name">
+          <h4>KMU-CAT<span> Physics</span></h4>
+          <h5>CHAPTER: Electromegnetic</h5>
+        </div>
+        <!-- <div class="save-button">
+          <i class="fa-regular fa-bookmark"></i>
+        </div> -->
+      </div>
+      <div class="question-year">Year: 2021</div>
+      <div class="question-text">
+        <span class="question-label"></span>
+        <p class="cur-q"></p>
+      </div>
+
+      <div class="options-container">
+        <div class="option" onclick="selectOption(this)" data-correct="false">
+          <p><span class="option-label">A</span> <span class="option-label-2"></span></p> 
+          
+        </div>
+        <div class="option" onclick="selectOption(this)" data-correct="false">
+          <p><span class="option-label">B</span> <span class="option-label-2"></span></p> 
+          
+        </div>
+        <div class="option" onclick="selectOption(this)" data-correct="true">
+          <p><span class="option-label">C</span> <span class="option-label-2"></span></p> 
+          
+        </div>
+        <div class="option" onclick="selectOption(this)" data-correct="false">
+          <p><span class="option-label">D</span> <span class="option-label-2"></span></p> 
+          
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button class="btn-previous" onclick="handlePrevious()">
+          Previous
+        </button>
+        <button class="btn-home">Home</button>
+        <button class="btn-next" onclick="nextQuestion()">Next</button>
+      </div>
+    </div> 
+
+  <div class="explanation-container" id="explanation">
+    <div class="question-text">
+      What is the speed of electromagnetic waves in a vacuum?
+    </div>
+
+    <h3>Correct Answer: C</h3>
+    <p>
+      Explanation: Electromagnetic waves, including light, propagate through a
+      vacuum at a speed of approximately 3 x 10^8 meters per second, which is
+      a fundamental constant of the universe.
+    </p>
+    <div class="action-buttons">
+      <button class="btn-previous-2">Previous</button>
+      <button class="btn-home">Home</button>
+      <button class="btn-next-explanation">Next</button>
+    </div>
+  </div> 
+
+
+
+  <script>
+
+let curQNo = document.querySelector(".q-no");
+let totalQNo = document.querySelector(".total-qs");
+
+let questions = [
+  {
+    question: " Which of the following is true regarding the pressure at the bottom of a swimming pool?",
+    options: [" It depends on the shape of the pool  ", " It depends on the mass of water ", "It depends on the total surface area ", " It depends on the depth"],
+    correctAnswer: " It depends on the depth",
+    explanation: `The pressure at the bottom of a swimming pool depends on the depth of the water, not on the shape, mass, or total surface area of the pool. The pressure  P at a depth h is given by the formula:
+P = [ ρgh]
+Where:
+   ( ρ ) is the density of water.
+   ( g ) is the acceleration due to gravity.
+   ( h ) is the depth of the water.
+
+This shows that pressure increases with depth. Therefore, the correct answer is It depends on the depth.
+`,
+  },
+
+  // Add more questions as needed
+];
+
+totalQNo.innerText = questions.length;
+
+let selectedOption = null;
+let currentMCQ = 0;
+
+function selectOption(option) {
+  if (selectedOption) {
+    selectedOption.classList.remove("selected");
+  }
+  selectedOption = option;
+  option.classList.add("selected");
+}
+
+function showMCQ(index) {
+  curQNo.innerText = index + 1;
+  const questionData = questions[index];
+  document.querySelector(".cur-q").textContent = questionData.question;
+  const options = document.querySelectorAll(".option-label-2");
+  options.forEach((option, i) => {
+    option.textContent = questionData.options[i];
+    option.setAttribute(
+      "data-correct",
+      questionData.options[i] === questionData.correctAnswer
+    );
+    option.classList.remove("selected", "correct", "wrong");
+  });
+}
+
+function nextQuestion() {
+  if (!selectedOption) {
+    alert("Please select an option!");
+    return;
+  }
+  const isCorrect = selectedOption.getAttribute("data-correct") === "true";
+  if (isCorrect) {
+    selectedOption.classList.add("correct");
+  } else {
+    selectedOption.classList.add("wrong");
+    document
+      .querySelector('.option[data-correct="true"]')
+      .classList.add("correct");
+  }
+
+  setTimeout(function () {
+    document.querySelector(".quiz-container").style.display = "none";
+    document.getElementById("explanation").style.display = "block";
+    document.querySelector("#explanation .question-text").textContent =
+      questions[currentMCQ].question;
+    document.querySelector(
+      "#explanation h3"
+    ).textContent = `Correct Answer: ${questions[currentMCQ].correctAnswer}`;
+    document.querySelector("#explanation p").textContent =
+      questions[currentMCQ].explanation;
+  }, 2000);
+}
+
+function handleNext() {
+  currentMCQ++;
+  if (currentMCQ >= questions.length) {
+    currentMCQ = questions.length - 1; // Stay at the last question
+  }
+  document.querySelector(".quiz-container").style.display = "block";
+  document.getElementById("explanation").style.display = "none";
+  selectedOption = null;
+  showMCQ(currentMCQ);
+}
+
+function handlePrevious() {
+  currentMCQ--;
+  if (currentMCQ <= 0) {
+    currentMCQ = 0; // Stay at the first question
+  }
+  document.querySelector(".quiz-container").style.display = "block";
+  document.getElementById("explanation").style.display = "none";
+  selectedOption = null;
+  showMCQ(currentMCQ);
+}
+
+document
+  .querySelector(".btn-next-explanation")
+  .addEventListener("click", handleNext);
+document
+  .querySelector(".btn-previous-2")
+  .addEventListener("click", handlePrevious);
+console.log(currentMCQ);
+
+showMCQ(currentMCQ);
+
+  </script>
+  </body>
+</html>

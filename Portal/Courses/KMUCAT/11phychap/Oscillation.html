@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="quiz-container">
+      <div class="first-row">
+        <div class="question-number">
+          mcqs
+          <p><span class="q-no"></span>/<span class="total-qs"></span></p>
+        </div>
+        <div class="subject-name">
+          <h4>KMU-CAT<span> Physics</span></h4>
+          <h5>CHAPTER: Electromegnetic</h5>
+        </div>
+        <!-- <div class="save-button">
+          <i class="fa-regular fa-bookmark"></i>
+        </div> -->
+      </div>
+      <div class="question-year">Year: 2021</div>
+      <div class="question-text">
+        <span class="question-label"></span>
+        <p class="cur-q"></p>
+      </div>
+
+      <div class="options-container">
+        <div class="option" onclick="selectOption(this)" data-correct="false">
+          <p>
+            <span class="option-label">A</span>
+            <span class="option-label-2"></span>
+          </p>
+        </div>
+        <div class="option" onclick="selectOption(this)" data-correct="false">
+          <p>
+            <span class="option-label">B</span>
+            <span class="option-label-2"></span>
+          </p>
+        </div>
+        <div class="option" onclick="selectOption(this)" data-correct="true">
+          <p>
+            <span class="option-label">C</span>
+            <span class="option-label-2"></span>
+          </p>
+        </div>
+        <div class="option" onclick="selectOption(this)" data-correct="false">
+          <p>
+            <span class="option-label">D</span>
+            <span class="option-label-2"></span>
+          </p>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button class="btn-previous" onclick="handlePrevious()">
+          Previous
+        </button>
+        <button class="btn-home">Home</button>
+        <button class="btn-next" onclick="nextQuestion()">Next</button>
+      </div>
+    </div>
+
+    <div class="explanation-container" id="explanation">
+      <div class="question-text">
+        What is the speed of electromagnetic waves in a vacuum?
+      </div>
+
+      <h3>Correct Answer: C</h3>
+      <p>
+        Explanation: Electromagnetic waves, including light, propagate through a
+        vacuum at a speed of approximately 3 x 10^8 meters per second, which is
+        a fundamental constant of the universe.
+      </p>
+      <div class="action-buttons">
+        <button class="btn-previous-2">Previous</button>
+        <button class="btn-home">Home</button>
+        <button class="btn-next-explanation">Next</button>
+      </div>
+    </div>
+
+    <script>
+      let curQNo = document.querySelector(".q-no");
+      let totalQNo = document.querySelector(".total-qs");
+
+      let questions = [
+        {
+          question:
+            "The time period of a simple pendulum depends upon:",
+          options: [
+            " Mass",
+            " Shape",
+            " Length",
+            "  Angle",
+          ],
+          correctAnswer: " Length",
+          explanation: ` The time period T of a simple pendulum is given by the formula:
+T= 2π√ L/g
+Where:
+   L is the length of the pendulum.
+   g is the acceleration due to gravity.
+The time period is directly proportional to the square root of the length of the pendulum and is independent of the mass of the bob and the angle of oscillation (for small angles). Therefore, the correct answer is length.`,
+        },
+        {
+          question:
+            "A particle is executing simple harmonic motion. Its velocity is",
+          options: [
+            "Maximum at the extreme points",
+            "Maximum at the mean position",
+            "Zero at the extreme points",
+            " Constant at all points",
+          ],
+          correctAnswer: "Zero at the extreme points",
+          explanation: `In simple harmonic motion, the velocity of the particle is maximum at the equilibrium position and zero at the extreme points.`,
+        },
+        {
+          question:
+            "The quality factor of a damped oscillator increases with:",
+          options: [
+            "Decrease in damping",
+            "Increase in damping",
+            " Decrease in frequency",
+            " Increase in frequency",
+          ],
+          correctAnswer: "Decrease in damping",
+          explanation: `The quality factor Q is inversely proportional to the damping coefficient (b). Mathematically, Q = ω₀ / b, where ω₀ is the resonant frequency. A lower damping results in less energy loss per cycle, hence a higher quality factor.`,
+        },
+        {
+    question:"The heating and cooking of food evenly by microwave oven is an example of:",
+    options: [" S.H.M", " Resonance  ", " Damped Oscillation", "Free Oscillation"],
+    correctAnswer: "Resonance",
+    explanation: `Microwaves work by causing water molecules in food to vibrate at their resonant frequency, which increases thermal energy and heats the food.`,
+  },
+        // Add more questions as needed
+      ];
+
+      totalQNo.innerText = questions.length;
+
+      let selectedOption = null;
+      let currentMCQ = 0;
+
+      function selectOption(option) {
+        if (selectedOption) {
+          selectedOption.classList.remove("selected");
+        }
+        selectedOption = option;
+        option.classList.add("selected");
+      }
+
+      function showMCQ(index) {
+        curQNo.innerText = index + 1;
+        const questionData = questions[index];
+        document.querySelector(".cur-q").textContent = questionData.question;
+        const options = document.querySelectorAll(".option-label-2");
+        options.forEach((option, i) => {
+          option.textContent = questionData.options[i];
+          option.setAttribute(
+            "data-correct",
+            questionData.options[i] === questionData.correctAnswer
+          );
+          option.classList.remove("selected", "correct", "wrong");
+        });
+      }
+
+      function nextQuestion() {
+        if (!selectedOption) {
+          alert("Please select an option!");
+          return;
+        }
+        const isCorrect =
+          selectedOption.getAttribute("data-correct") === "true";
+        if (isCorrect) {
+          selectedOption.classList.add("correct");
+        } else {
+          selectedOption.classList.add("wrong");
+          document
+            .querySelector('.option[data-correct="true"]')
+            .classList.add("correct");
+        }
+
+        setTimeout(function () {
+          document.querySelector(".quiz-container").style.display = "none";
+          document.getElementById("explanation").style.display = "block";
+          document.querySelector("#explanation .question-text").textContent =
+            questions[currentMCQ].question;
+          document.querySelector(
+            "#explanation h3"
+          ).textContent = `Correct Answer: ${questions[currentMCQ].correctAnswer}`;
+          document.querySelector("#explanation p").textContent =
+            questions[currentMCQ].explanation;
+        }, 2000);
+      }
+
+      function handleNext() {
+        currentMCQ++;
+        if (currentMCQ >= questions.length) {
+          currentMCQ = questions.length - 1; // Stay at the last question
+        }
+        document.querySelector(".quiz-container").style.display = "block";
+        document.getElementById("explanation").style.display = "none";
+        selectedOption = null;
+        showMCQ(currentMCQ);
+      }
+
+      function handlePrevious() {
+        currentMCQ--;
+        if (currentMCQ <= 0) {
+          currentMCQ = 0; // Stay at the first question
+        }
+        document.querySelector(".quiz-container").style.display = "block";
+        document.getElementById("explanation").style.display = "none";
+        selectedOption = null;
+        showMCQ(currentMCQ);
+      }
+
+      document
+        .querySelector(".btn-next-explanation")
+        .addEventListener("click", handleNext);
+      document
+        .querySelector(".btn-previous-2")
+        .addEventListener("click", handlePrevious);
+      console.log(currentMCQ);
+
+      showMCQ(currentMCQ);
+    </script>
+  </body>
+</html>

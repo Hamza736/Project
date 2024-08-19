@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+  </head>
+  <body>
+  
+
+
+    <div class="quiz-container">
+      <div class="first-row">
+        <div class="question-number">
+          mcqs
+          <p><span class="q-no"></span>/<span class="total-qs"></span></p>
+        </div>
+        <div class="subject-name">
+          <h4>KMU-CAT<span> Physics</span></h4>
+          <h5>CHAPTER: Electromegnetic</h5>
+        </div>
+        <!-- <div class="save-button">
+          <i class="fa-regular fa-bookmark"></i>
+        </div> -->
+      </div>
+      <div class="question-year">Year: 2021</div>
+      <div class="question-text">
+        <span class="question-label"></span>
+        <p class="cur-q"></p>
+      </div>
+
+      <div class="options-container">
+        <div class="option" onclick="selectOption(this)" data-correct="false">
+          <p><span class="option-label">A</span> <span class="option-label-2"></span></p> 
+          
+        </div>
+        <div class="option" onclick="selectOption(this)" data-correct="false">
+          <p><span class="option-label">B</span> <span class="option-label-2"></span></p> 
+          
+        </div>
+        <div class="option" onclick="selectOption(this)" data-correct="true">
+          <p><span class="option-label">C</span> <span class="option-label-2"></span></p> 
+          
+        </div>
+        <div class="option" onclick="selectOption(this)" data-correct="false">
+          <p><span class="option-label">D</span> <span class="option-label-2"></span></p> 
+          
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button class="btn-previous" onclick="handlePrevious()">
+          Previous
+        </button>
+        <button class="btn-home">Home</button>
+        <button class="btn-next" onclick="nextQuestion()">Next</button>
+      </div>
+    </div> 
+
+  <div class="explanation-container" id="explanation">
+    <div class="question-text">
+      What is the speed of electromagnetic waves in a vacuum?
+    </div>
+
+    <h3>Correct Answer: C</h3>
+    <p>
+      Explanation: Electromagnetic waves, including light, propagate through a
+      vacuum at a speed of approximately 3 x 10^8 meters per second, which is
+      a fundamental constant of the universe.
+    </p>
+    <div class="action-buttons">
+      <button class="btn-previous-2">Previous</button>
+      <button class="btn-home">Home</button>
+      <button class="btn-next-explanation">Next</button>
+    </div>
+  </div> 
+
+
+
+  <script>
+
+let curQNo = document.querySelector(".q-no");
+let totalQNo = document.querySelector(".total-qs");
+
+let questions = [
+  {
+    question: "The dimension of work is like the dimensions of:",
+    options: ["Impulse", "Torque ", "Power", "Angular momentum"],
+    correctAnswer: "Torque ",
+    explanation: "Work is defined as the product of force and displacement in the direction of the force, W = F × d. The dimension of work is [ML^2T^-2], which is the same as torque, τ = F × r, where r is the distance. Both have dimensions of [ML^2T^-2].",
+  },
+  {
+    question: "The unit of electric field intensity is?",
+    options: ["Newton/Coulomb", "Joule/Coulomb.metre", "Volt/metre", "Volt.metre"],
+    correctAnswer: "Newton/Coulomb",
+    explanation: "Electric field intensity E is defined as force per unit charge E = F/q. The unit of force is Newton and that of charge is Coulomb, so the unit of E is Newton/Coulomb.",
+  },
+  {
+    question: "SI unit of impulse is",
+    options: ["Kg m/s²", "N s⁻¹", "Nm", "Ns"],
+    correctAnswer: "Ns",
+    explanation: "Impulse is defined as the change in momentum, which can be calculated as F × Δt. The unit of force (Newton) times time (second) gives the unit Newton-second (Ns).",
+  },
+  {
+    question: "Which of the following is the correct way of writing units",
+    options: ["12m/s", "71 Newton", "43kg m³", "8 Kg"],
+    correctAnswer: "12m/s",
+    explanation: "In SI units, quantities are expressed with their unit symbols immediately following the number without space (except for units that are products of other units, like Newton-meter). '12m/s' indicates meters per second, which is the correct format.",
+  },
+  {
+    question: "The instrument used to observe the sun is",
+    options: ["Periscope", "Microscope ", "Kaleidoscope", "Helioscope"],
+    correctAnswer: "Helioscope",
+    explanation: "A Helioscope is a specialized telescope designed to observe the sun safely. It uses a combination of lenses and filters to reduce the sun's intense light and heat, allowing for direct observation of the sun's surface. Periscope is an instrument used to observe objects that are not in direct line of sight, Kaleidoscope is an optical instrument used to create symmetrical patterns, and Microscope is used to observe tiny objects, none of which are suitable for observing the sun. Therefore, the correct answer is Helioscope.",
+  },
+  {
+    question: "The S.I. unit of magnetic flux is:",
+    options: [" Volt", "Ampere", "Tesla", "Weber"],
+    correctAnswer: "Weber",
+    explanation: "The SI unit of magnetic flux is the Weber (Wb). Magnetic flux is the measure of the quantity of magnetism, considering the strength and extent of a magnetic field. One Weber is defined as the magnetic flux that, linking a circuit of one turn, produces an electromotive force of one volt when reduced to zero at a uniform rate in one second. Tesla, on the other hand, is the unit of magnetic flux density, while Ampere is the unit of electric current, and Volt is the unit of electric potential difference.",
+  },
+  {
+    question: " The unit of power is:",
+    options: ["Watt", "Pascal", "Newton ", "Joule"],
+    correctAnswer: "Watt",
+    explanation: "Power is defined as the rate at which work is done or energy is transferred. The SI unit of power is the Watt (W), which is equivalent to one joule per second (1 W = 1 J/s). Joule is the unit of energy, Newton is the unit of force, and Pascal is the unit of pressure. Therefore, the correct answer is Watt.",
+  },
+  // Add more questions as needed
+];
+
+totalQNo.innerText = questions.length;
+
+let selectedOption = null;
+let currentMCQ = 0;
+
+function selectOption(option) {
+  if (selectedOption) {
+    selectedOption.classList.remove("selected");
+  }
+  selectedOption = option;
+  option.classList.add("selected");
+}
+
+function showMCQ(index) {
+  curQNo.innerText = index + 1;
+  const questionData = questions[index];
+  document.querySelector(".cur-q").textContent = questionData.question;
+  const options = document.querySelectorAll(".option-label-2");
+  options.forEach((option, i) => {
+    option.textContent = questionData.options[i];
+    option.setAttribute(
+      "data-correct",
+      questionData.options[i] === questionData.correctAnswer
+    );
+    option.classList.remove("selected", "correct", "wrong");
+  });
+}
+
+function nextQuestion() {
+  if (!selectedOption) {
+    alert("Please select an option!");
+    return;
+  }
+  const isCorrect = selectedOption.getAttribute("data-correct") === "true";
+  if (isCorrect) {
+    selectedOption.classList.add("correct");
+  } else {
+    selectedOption.classList.add("wrong");
+    document
+      .querySelector('.option[data-correct="true"]')
+      .classList.add("correct");
+  }
+
+  setTimeout(function () {
+    document.querySelector(".quiz-container").style.display = "none";
+    document.getElementById("explanation").style.display = "block";
+    document.querySelector("#explanation .question-text").textContent =
+      questions[currentMCQ].question;
+    document.querySelector(
+      "#explanation h3"
+    ).textContent = `Correct Answer: ${questions[currentMCQ].correctAnswer}`;
+    document.querySelector("#explanation p").textContent =
+      questions[currentMCQ].explanation;
+  }, 2000);
+}
+
+function handleNext() {
+  currentMCQ++;
+  if (currentMCQ >= questions.length) {
+    currentMCQ = questions.length - 1; // Stay at the last question
+  }
+  document.querySelector(".quiz-container").style.display = "block";
+  document.getElementById("explanation").style.display = "none";
+  selectedOption = null;
+  showMCQ(currentMCQ);
+}
+
+function handlePrevious() {
+  currentMCQ--;
+  if (currentMCQ <= 0) {
+    currentMCQ = 0; // Stay at the first question
+  }
+  document.querySelector(".quiz-container").style.display = "block";
+  document.getElementById("explanation").style.display = "none";
+  selectedOption = null;
+  showMCQ(currentMCQ);
+}
+
+document
+  .querySelector(".btn-next-explanation")
+  .addEventListener("click", handleNext);
+document
+  .querySelector(".btn-previous-2")
+  .addEventListener("click", handlePrevious);
+console.log(currentMCQ);
+
+showMCQ(currentMCQ);
+
+  </script>
+  </body>
+</html>

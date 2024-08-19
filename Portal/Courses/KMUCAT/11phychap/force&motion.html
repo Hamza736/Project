@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="quiz-container">
+      <div class="first-row">
+        <div class="question-number">
+          mcqs
+          <p><span class="q-no"></span>/<span class="total-qs"></span></p>
+        </div>
+        <div class="subject-name">
+          <h4>KMU-CAT<span> Physics</span></h4>
+          <h5>CHAPTER: Electromegnetic</h5>
+        </div>
+        <!-- <div class="save-button">
+          <i class="fa-regular fa-bookmark"></i>
+        </div> -->
+      </div>
+      <div class="question-year">Year: 2021</div>
+      <div class="question-text">
+        <span class="question-label"></span>
+        <p class="cur-q"></p>
+      </div>
+
+      <div class="options-container">
+        <div class="option" onclick="selectOption(this)" data-correct="false">
+          <p>
+            <span class="option-label">A</span>
+            <span class="option-label-2"></span>
+          </p>
+        </div>
+        <div class="option" onclick="selectOption(this)" data-correct="false">
+          <p>
+            <span class="option-label">B</span>
+            <span class="option-label-2"></span>
+          </p>
+        </div>
+        <div class="option" onclick="selectOption(this)" data-correct="true">
+          <p>
+            <span class="option-label">C</span>
+            <span class="option-label-2"></span>
+          </p>
+        </div>
+        <div class="option" onclick="selectOption(this)" data-correct="false">
+          <p>
+            <span class="option-label">D</span>
+            <span class="option-label-2"></span>
+          </p>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button class="btn-previous" onclick="handlePrevious()">
+          Previous
+        </button>
+        <button class="btn-home">Home</button>
+        <button class="btn-next" onclick="nextQuestion()">Next</button>
+      </div>
+    </div>
+
+    <div class="explanation-container" id="explanation">
+      <div class="question-text">
+        What is the speed of electromagnetic waves in a vacuum?
+      </div>
+
+      <h3>Correct Answer: C</h3>
+      <p>
+        Explanation: Electromagnetic waves, including light, propagate through a
+        vacuum at a speed of approximately 3 x 10^8 meters per second, which is
+        a fundamental constant of the universe.
+      </p>
+      <div class="action-buttons">
+        <button class="btn-previous-2">Previous</button>
+        <button class="btn-home">Home</button>
+        <button class="btn-next-explanation">Next</button>
+      </div>
+    </div>
+
+    <script>
+      let curQNo = document.querySelector(".q-no");
+      let totalQNo = document.querySelector(".total-qs");
+
+      let questions = [
+        {
+          question:
+            "A train of length 100m is crossing a bridge of 200m in length at a speed of 20 m/s. What is the time taken by the train to cross the bridge? ",
+          options: ["10 sec  ", "15 sec   ", "25 sec  ", "20 sec  "],
+          correctAnswer: "15 sec   ",
+          explanation: `To calculate the time taken for the train to cross the bridge, you need to consider the total distance the train must travel to completely cross the bridge. This distance is the sum of the train’s length and the bridge's length. Total Distance = 100 m + 200 m = 300 m
+      Given the speed of the train is 20 m/s, the time taken to cover this distance is calculated using:
+      Time = Distance / Speed = 300 m / 20 m/s = 15 s
+       Therefore, the correct answer is 15 seconds.`,
+        },
+        {
+          question:
+            "The escape velocity on the surface of the earth is approximately",
+          options: ["11 km/s", "8 km/s", "12 km/s", "15 km/s"],
+          correctAnswer: "11 km/s",
+          explanation:
+            "The escape velocity is the minimum velocity required for an object to escape the gravitational pull of a celestial body without further propulsion. The escape velocity ve from the surface of the Earth is given by the formula: ve = √(2GM/R). For Earth, this value is approximately 11.2 km/s, often rounded to 11 km/s. However, the correct option seems to be a mistake, and the correct answer is actually 11 km/s.",
+        },
+        {
+          question:
+            "An object of mass m is moving with a velocity v. The kinetic energy of the object is:",
+          options: ["1/2 mv^2", "1/2 mv", "mv", "mv^2"],
+          correctAnswer: "1/2 mv^2",
+          explanation: `The kinetic energy ( K.E. ) of an object is given by the formula:
+         K.E. = 1/2 mv^2
+         Where:
+       ( m ) is the mass of the object.
+        ( v ) is the velocity of the object.
+         This formula shows that the kinetic energy is directly proportional to both the mass and the square of the velocity. Therefore, the correct answer is 1/2 mv^2`,
+        },
+        {
+          question:
+            "The mass of the Earth is approximately:",
+          options: ["1 × 10^{25} kg", "6 × 10^{24} kg", "5 × 10^{23} kg", "3 × 10^{22} kg"],
+          correctAnswer: "6 × 10^{24} kg",
+          explanation:
+            "The mass of the Earth is approximately 5.972 × 10^24 kg, which is commonly rounded to 6×10^24 kg in most problems for simplicity. This value is based on the gravitational influence Earth exerts on objects, combined with Newton's law of gravitation. Thus, the correct answer is 6×10^24 kg.",
+        },
+        {
+          question: " A mass accelerates uniformly when the resultant force acting on it is:",
+          options: ["Zero", "Constant but not zero ", "Increases uniformly with respect to time", "Both (a) and (c)"],
+          correctAnswer: "Constant but not zero",
+          explanation:
+            " According to Newton's Second Law, F = ma. For uniform acceleration a, the force F must be constant and non-zero. If F = 0, the mass does not accelerate.",
+        },
+        {
+          question: "Conservation of linear momentum is equivalent to:",
+          options: [" Newton's 1st law of motion", "Newton's 2nd law of motion", "Newton's 3rd law of motion", "None of the above"],
+          correctAnswer: "Newton's 3rd law of motion",
+          explanation:
+            "Newton's 3rd law states that every action has an equal and opposite reaction. In an isolated system, this principle ensures that the total linear momentum remains constant, leading to the conservation of momentum.",
+        },
+        {
+          question: "If the force acting on a body is inversely proportional to its speed, the body:",
+          options: ["Moves with constant speed", "Moves with uniform velocity", "Moves with constant acceleration", "Moves with uniform acceleration"],
+          correctAnswer: "Moves with uniform acceleration",
+          explanation:
+            "When force F is inversely proportional to speed v, F × v = constant. Since F = ma, where a is acceleration, and v changes uniformly, this implies uniform acceleration over time.",
+        },
+        {
+          question: "When the speed of your car is doubled, by what factor does its kinetic energy increase",
+          options: [" √2", "2", "4", "8"],
+          correctAnswer: "4",
+          explanation:
+            "Kinetic energy K.E. = 1/2 mv². If speed v is doubled, then the kinetic energy becomes 1/2 m(2v)² = 4 × 1/2 mv², i.e., it increases by a factor of 4.",
+        },
+        {
+          question: " A body moving in a circular path with constant speed has:",
+          options: ["Constant acceleration", "Constant retardation", "Variable acceleration", "Variable speed and constant velocity"],
+          correctAnswer: "Variable acceleration",
+          explanation:
+            "Although the speed is constant, the direction of the velocity is continuously changing, meaning there is a change in velocity over time, hence acceleration is present and is variable in direction (centripetal acceleration).",
+        },
+        // Add more questions as needed
+      ];
+
+      totalQNo.innerText = questions.length;
+
+      let selectedOption = null;
+      let currentMCQ = 0;
+
+      function selectOption(option) {
+        if (selectedOption) {
+          selectedOption.classList.remove("selected");
+        }
+        selectedOption = option;
+        option.classList.add("selected");
+      }
+
+      function showMCQ(index) {
+        curQNo.innerText = index + 1;
+        const questionData = questions[index];
+        document.querySelector(".cur-q").textContent = questionData.question;
+        const options = document.querySelectorAll(".option-label-2");
+        options.forEach((option, i) => {
+          option.textContent = questionData.options[i];
+          option.setAttribute(
+            "data-correct",
+            questionData.options[i] === questionData.correctAnswer
+          );
+          option.classList.remove("selected", "correct", "wrong");
+        });
+      }
+
+      function nextQuestion() {
+        if (!selectedOption) {
+          alert("Please select an option!");
+          return;
+        }
+        const isCorrect =
+          selectedOption.getAttribute("data-correct") === "true";
+        if (isCorrect) {
+          selectedOption.classList.add("correct");
+        } else {
+          selectedOption.classList.add("wrong");
+          document
+            .querySelector('.option[data-correct="true"]')
+            .classList.add("correct");
+        }
+
+        setTimeout(function () {
+          document.querySelector(".quiz-container").style.display = "none";
+          document.getElementById("explanation").style.display = "block";
+          document.querySelector("#explanation .question-text").textContent =
+            questions[currentMCQ].question;
+          document.querySelector(
+            "#explanation h3"
+          ).textContent = `Correct Answer: ${questions[currentMCQ].correctAnswer}`;
+          document.querySelector("#explanation p").textContent =
+            questions[currentMCQ].explanation;
+        }, 2000);
+      }
+
+      function handleNext() {
+        currentMCQ++;
+        if (currentMCQ >= questions.length) {
+          currentMCQ = questions.length - 1; // Stay at the last question
+        }
+        document.querySelector(".quiz-container").style.display = "block";
+        document.getElementById("explanation").style.display = "none";
+        selectedOption = null;
+        showMCQ(currentMCQ);
+      }
+
+      function handlePrevious() {
+        currentMCQ--;
+        if (currentMCQ <= 0) {
+          currentMCQ = 0; // Stay at the first question
+        }
+        document.querySelector(".quiz-container").style.display = "block";
+        document.getElementById("explanation").style.display = "none";
+        selectedOption = null;
+        showMCQ(currentMCQ);
+      }
+
+      document
+        .querySelector(".btn-next-explanation")
+        .addEventListener("click", handleNext);
+      document
+        .querySelector(".btn-previous-2")
+        .addEventListener("click", handlePrevious);
+      console.log(currentMCQ);
+
+      showMCQ(currentMCQ);
+    </script>
+  </body>
+</html>

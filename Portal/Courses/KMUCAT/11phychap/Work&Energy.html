@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+  </head>
+  <body>
+  
+
+
+    <div class="quiz-container">
+      <div class="first-row">
+        <div class="question-number">
+          mcqs
+          <p><span class="q-no"></span>/<span class="total-qs"></span></p>
+        </div>
+        <div class="subject-name">
+          <h4>KMU-CAT<span> Physics</span></h4>
+          <h5>CHAPTER: Electromegnetic</h5>
+        </div>
+        <!-- <div class="save-button">
+          <i class="fa-regular fa-bookmark"></i>
+        </div> -->
+      </div>
+      <div class="question-year">Year: 2021</div>
+      <div class="question-text">
+        <span class="question-label"></span>
+        <p class="cur-q"></p>
+      </div>
+
+      <div class="options-container">
+        <div class="option" onclick="selectOption(this)" data-correct="false">
+          <p><span class="option-label">A</span> <span class="option-label-2"></span></p> 
+          
+        </div>
+        <div class="option" onclick="selectOption(this)" data-correct="false">
+          <p><span class="option-label">B</span> <span class="option-label-2"></span></p> 
+          
+        </div>
+        <div class="option" onclick="selectOption(this)" data-correct="true">
+          <p><span class="option-label">C</span> <span class="option-label-2"></span></p> 
+          
+        </div>
+        <div class="option" onclick="selectOption(this)" data-correct="false">
+          <p><span class="option-label">D</span> <span class="option-label-2"></span></p> 
+          
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button class="btn-previous" onclick="handlePrevious()">
+          Previous
+        </button>
+        <button class="btn-home">Home</button>
+        <button class="btn-next" onclick="nextQuestion()">Next</button>
+      </div>
+    </div> 
+
+  <div class="explanation-container" id="explanation">
+    <div class="question-text">
+      What is the speed of electromagnetic waves in a vacuum?
+    </div>
+
+    <h3>Correct Answer: C</h3>
+    <p>
+      Explanation: Electromagnetic waves, including light, propagate through a
+      vacuum at a speed of approximately 3 x 10^8 meters per second, which is
+      a fundamental constant of the universe.
+    </p>
+    <div class="action-buttons">
+      <button class="btn-previous-2">Previous</button>
+      <button class="btn-home">Home</button>
+      <button class="btn-next-explanation">Next</button>
+    </div>
+  </div> 
+
+
+
+  <script>
+
+let curQNo = document.querySelector(".q-no");
+let totalQNo = document.querySelector(".total-qs");
+
+let questions = [
+  {
+    question: "The escape velocity on the surface of the earth is approximately:",
+    options: ["11 km/s ", "8 km/s", "12 km/s", "15 km/s"],
+    correctAnswer: "11 km/s",
+    explanation: "The escape velocity is the minimum velocity required for an object to escape the gravitational pull of a celestial body without further propulsion. The escape velocity ve from the surface of the Earth is given by the formula: ve = sqrt(2GM/R). For Earth, this value is approximately 11.2 km/s, often rounded to 11 km/s. However, the correct option seems to be a mistake, and the correct answer is actually 11 km/s.",
+  },
+  {
+    question: "In a vacuum, a feather and a stone are dropped from the same height. Which will reach the ground first?",
+    options: [" Both will reach at the same time", "Stone", " Feather", "Cannot be determined"],
+    correctAnswer: "Both will reach at the same time",
+    explanation: "In a vacuum, there is no air resistance, meaning that all objects fall at the same rate regardless of their mass. Both the feather and the stone will experience the same acceleration due to gravity, which is approximately 9.8 m/s^2. Therefore, they will reach the ground at the same time. Thus, the correct answer is Both will reach at the same time.",
+  },
+  {
+    question: "An object of mass m is moving with a velocity v. The kinetic energy of the object is:",
+    options: ["1/2 mv^2", "1/2 mv", "mv^2 ", "mv"],
+    correctAnswer: "1/2 mv^2",
+    explanation: `The kinetic energy ( K.E. ) of an object is given by the formula:
+ K.E. = 1/2 mv^2
+Where:
+( m ) is the mass of the object.
+( v ) is the velocity of the object.
+This formula shows that the kinetic energy is directly proportional to both the mass and the square of the velocity. Therefore, the correct answer is 1/2mv^2 
+`,
+  },
+  {
+    question: "The heat energy dissipated by a 40-watt bulb in one hour is: ",
+    options: [" 1440 J", " 14400 J", " 144000 J", " 1444000 J"],
+    correctAnswer: "144000 J",
+    explanation: "Power P = W/t, where W is energy and t is time. Here, W = P × t = 40W × 3600s = 144000 J.",
+  },
+  {
+    question: "When the body moves against the force of friction on a horizontal plane, the work done by the body is:",
+    options: ["Negative", "Positive", "KaleidoscopeMaximum and positive","zero"],
+    correctAnswer: "Negative",
+    explanation: "The work done by the frictional force is negative because the force of friction opposes the direction of motion, meaning energy is lost by the body.",
+  },
+  {
+    question: "When the speed of your car is doubled, by what factor does its kinetic energy increase",
+    options: [" √2", "2", "4", "8"],
+    correctAnswer: "4",
+    explanation: "Kinetic energy K.E. = 1/2 mv². If speed v is doubled, then the kinetic energy becomes 1/2 m(2v)² = 4 × 1/2 mv², i.e., it increases by a factor of 4.",
+  },
+  
+  // Add more questions as needed
+];
+
+totalQNo.innerText = questions.length;
+
+let selectedOption = null;
+let currentMCQ = 0;
+
+function selectOption(option) {
+  if (selectedOption) {
+    selectedOption.classList.remove("selected");
+  }
+  selectedOption = option;
+  option.classList.add("selected");
+}
+
+function showMCQ(index) {
+  curQNo.innerText = index + 1;
+  const questionData = questions[index];
+  document.querySelector(".cur-q").textContent = questionData.question;
+  const options = document.querySelectorAll(".option-label-2");
+  options.forEach((option, i) => {
+    option.textContent = questionData.options[i];
+    option.setAttribute(
+      "data-correct",
+      questionData.options[i] === questionData.correctAnswer
+    );
+    option.classList.remove("selected", "correct", "wrong");
+  });
+}
+
+function nextQuestion() {
+  if (!selectedOption) {
+    alert("Please select an option!");
+    return;
+  }
+  const isCorrect = selectedOption.getAttribute("data-correct") === "true";
+  if (isCorrect) {
+    selectedOption.classList.add("correct");
+  } else {
+    selectedOption.classList.add("wrong");
+    document
+      .querySelector('.option[data-correct="true"]')
+      .classList.add("correct");
+  }
+
+  setTimeout(function () {
+    document.querySelector(".quiz-container").style.display = "none";
+    document.getElementById("explanation").style.display = "block";
+    document.querySelector("#explanation .question-text").textContent =
+      questions[currentMCQ].question;
+    document.querySelector(
+      "#explanation h3"
+    ).textContent = `Correct Answer: ${questions[currentMCQ].correctAnswer}`;
+    document.querySelector("#explanation p").textContent =
+      questions[currentMCQ].explanation;
+  }, 2000);
+}
+
+function handleNext() {
+  currentMCQ++;
+  if (currentMCQ >= questions.length) {
+    currentMCQ = questions.length - 1; // Stay at the last question
+  }
+  document.querySelector(".quiz-container").style.display = "block";
+  document.getElementById("explanation").style.display = "none";
+  selectedOption = null;
+  showMCQ(currentMCQ);
+}
+
+function handlePrevious() {
+  currentMCQ--;
+  if (currentMCQ <= 0) {
+    currentMCQ = 0; // Stay at the first question
+  }
+  document.querySelector(".quiz-container").style.display = "block";
+  document.getElementById("explanation").style.display = "none";
+  selectedOption = null;
+  showMCQ(currentMCQ);
+}
+
+document
+  .querySelector(".btn-next-explanation")
+  .addEventListener("click", handleNext);
+document
+  .querySelector(".btn-previous-2")
+  .addEventListener("click", handlePrevious);
+console.log(currentMCQ);
+
+showMCQ(currentMCQ);
+
+  </script>
+  </body>
+</html>
