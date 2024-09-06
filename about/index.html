@@ -2738,7 +2738,7 @@
                 >
                   <div class="elementor-widget-container">
                     <h2 class="elementor-heading-title elementor-size-default">
-                      Accessible, High-quality Healthcare For Everyone
+                      Meet Dr. Muazzam Saeed, Founder of Study Hour
                     </h2>
                   </div>
                 </div>
@@ -2749,12 +2749,11 @@
                   data-widget_type="text-editor.default"
                 >
                   <div class="elementor-widget-container">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur.
+                    I'm Dr. Muazzam Saeed, the proud owner and founder of Study
+                    Hour. With a passion for education and a dedication to
+                    helping students succeed, I created Study Hour to provide a
+                    comprehensive resource for mastering multiple-choice
+                    questions and achieving academic excellence.
                   </div>
                 </div>
                 <div
@@ -2897,9 +2896,9 @@
                         <div class="icon-box icon-box-body">
                           <h3 class="title">Our Vision</h3>
                           <p class="icon-box-description">
-                            Nemo enim ipsam voluptatem quia voluptas sit
-                            aspernatur aut odit aut fugit, sed quia consequuntur
-                            magni dolores eos
+                            At Study Hour, we believe that every student deserves the opportunity to succeed. Our mission is to provide high-quality learning materials, detailed solutions, and a supportive community to help students achieve their academic goals.
+Students from Allied health sciences, MBBS, BDS, BS Nursing, BS anesthesia, BS cardiology, BS emergency, BS MLT, BS audiology, BS health technology, BS dental, BS dialysis, BS Radiology , KMU-CAT , ETEA, UHS , MD-CAT , FCPS , MCPS etc can find stuff related to their studies here.
+
                           </p>
                         </div>
                       </div>
@@ -5682,7 +5681,7 @@
       </footer>
     </div>
     <!-- #page -->
-   
+
     <link
       rel="stylesheet"
       id="jeg-dynamic-style-css"
@@ -5889,47 +5888,49 @@
       id="sweetalert2-js"
     ></script>
     <script>
+      // JavaScript to handle login validation
+      document
+        .querySelector(".login-btn")
+        .addEventListener("click", handleLogin);
 
-	// JavaScript to handle login validation
-document.querySelector('.login-btn').addEventListener('click', handleLogin);
+      // Add keydown event listener to the password field
+      document
+        .getElementById("headerPassword")
+        .addEventListener("keydown", function (event) {
+          if (event.key === "Enter") {
+            handleLogin(event);
+          }
+        });
 
-// Add keydown event listener to the password field
-document.getElementById('headerPassword').addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-        handleLogin(event);
-    }
-});
+      // Function to handle login
+      function handleLogin(event) {
+        event.preventDefault(); // Prevent the form from submitting
 
-// Function to handle login
-function handleLogin(event) {
-    event.preventDefault(); // Prevent the form from submitting
+        // Get email and password values
+        const email = document.getElementById("headerEmail").value;
+        const password = document.getElementById("headerPassword").value;
 
-    // Get email and password values
-    const email = document.getElementById('headerEmail').value;
-    const password = document.getElementById('headerPassword').value;
+        // Simple validation
+        if (validateEmail(email) && validatePassword(password)) {
+          //  alert('Login successful!');
+          // Redirect to another page or perform any other action
+          window.location.href = "../Portal/dasboard.html"; // Example of redirecting to a dashboard
+        } else {
+          alert("Please enter a valid email and password.");
+        }
+      }
 
-    // Simple validation
-    if (validateEmail(email) && validatePassword(password)) {
-      //  alert('Login successful!');
-        // Redirect to another page or perform any other action
-        window.location.href = "../Portal/dasboard.html"; // Example of redirecting to a dashboard
-    } else {
-        alert('Please enter a valid email and password.');
-    }
-}
+      // Function to validate email
+      function validateEmail(email) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailPattern.test(email);
+      }
 
-// Function to validate email
-function validateEmail(email) {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
-}
-
-// Function to validate password (example: minimum 6 characters)
-function validatePassword(password) {
-    return password.length >= 6;
-}
-
-</script> 
+      // Function to validate password (example: minimum 6 characters)
+      function validatePassword(password) {
+        return password.length >= 6;
+      }
+    </script>
   </body>
 
   <!-- Mirrored from templatekit.jegtheme.com/diagsis/about/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 06 Aug 2024 10:37:03 GMT -->
