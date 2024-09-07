@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="quiz-container">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MCQ Quiz</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+
+   <div class="quiz-container">
       <div class="first-row">
         <div class="question-number">
           mcqs
@@ -17,11 +23,9 @@
           <h4>KMU-CAT<span> Physics</span></h4>
           <h5>CHAPTER: Electromegnetic</h5>
         </div>
-        <!-- <div class="save-button">
-          <i class="fa-regular fa-bookmark"></i>
-        </div> -->
+      
       </div>
-      <div class="question-year">Year: 2021</div>
+      <div class="question-year"></div>
       <div class="question-text">
         <span class="question-label"></span>
         <p class="cur-q"></p>
@@ -29,28 +33,20 @@
 
       <div class="options-container">
         <div class="option" onclick="selectOption(this)" data-correct="false">
-          <p>
-            <span class="option-label">A</span>
-            <span class="option-label-2"></span>
-          </p>
+          <p><span class="option-label">A</span> <span class="option-label-2"></span></p> 
+          
         </div>
         <div class="option" onclick="selectOption(this)" data-correct="false">
-          <p>
-            <span class="option-label">B</span>
-            <span class="option-label-2"></span>
-          </p>
+          <p><span class="option-label">B</span> <span class="option-label-2"></span></p> 
+          
         </div>
         <div class="option" onclick="selectOption(this)" data-correct="true">
-          <p>
-            <span class="option-label">C</span>
-            <span class="option-label-2"></span>
-          </p>
+          <p><span class="option-label">C</span> <span class="option-label-2"></span></p> 
+          
         </div>
         <div class="option" onclick="selectOption(this)" data-correct="false">
-          <p>
-            <span class="option-label">D</span>
-            <span class="option-label-2"></span>
-          </p>
+          <p><span class="option-label">D</span> <span class="option-label-2"></span></p> 
+          
         </div>
       </div>
 
@@ -61,189 +57,233 @@
         <button class="btn-home">Home</button>
         <button class="btn-next" onclick="nextQuestion()">Next</button>
       </div>
+    </div> 
+
+  <div class="explanation-container" id="explanation">
+    <div class="question-text">
+      What is the speed of electromagnetic waves in a vacuum?
     </div>
 
-    <div class="explanation-container" id="explanation">
-      <div class="question-text">
-        What is the speed of electromagnetic waves in a vacuum?
-      </div>
-
-      <h3>Correct Answer: C</h3>
-      <p>
-        Explanation: Electromagnetic waves, including light, propagate through a
-        vacuum at a speed of approximately 3 x 10^8 meters per second, which is
-        a fundamental constant of the universe.
-      </p>
-      <div class="action-buttons">
-        <button class="btn-previous-2">Previous</button>
-        <button class="btn-home">Home</button>
-        <button class="btn-next-explanation">Next</button>
-      </div>
+    <h3>Correct Answer: C</h3>
+    <p>
+      Explanation: Electromagnetic waves, including light, propagate through a
+      vacuum at a speed of approximately 3 x 10^8 meters per second, which is
+      a fundamental constant of the universe.
+    </p>
+    <div class="action-buttons">
+      <button class="btn-previous-2">Previous</button>
+      <button class="btn-home">Home</button>
+      <button class="btn-next-explanation">Next</button>
     </div>
+  </div> 
 
-    <script>
-      let curQNo = document.querySelector(".q-no");
-      let totalQNo = document.querySelector(".total-qs");
+  <script>
 
-      let questions = [
-        {
-          question:
-            "When sound waves pass from one medium to another, the quantity which remains the same is:",
-          options: [
-            "Frequency",
-            "Wavelength",
-            " Speed",
-            "Intensity",
-          ],
-          correctAnswer: "Frequency",
-          explanation: `When sound waves pass from one medium to another, their frequency remains constant, while speed and wavelength can change due to differing properties of the mediums.
+let curQNo = document.querySelector(".q-no");
+let totalQNo = document.querySelector(".total-qs");
+let questionLabel = document.querySelector(".question-label");
+
+let questions = [
+  {
+    question: "When sound waves pass from one medium to another, the quantity which remains the same is:",
+    options: ["Wavelength", "Frequency", "Speed", "Intensity"],
+    correctAnswer: "Frequency",
+    explanation:
+      ` When sound waves pass from one medium to another, their frequency remains constant, while speed and wavelength can change due to differing properties of the mediums.
+
+
 `,
-        },
-        {
-          question:
-            "What is correct for all transverse waves: ",
-          options: [
-            "They will involve the oscillation of the atoms",
-            "They all can be polarized ",
-            " They can travel through a vacuum",
-            " Both (a) & (c) are correct",
-          ],
-          correctAnswer: "They all can be polarized ",
-          explanation: `Transverse waves, such as light waves, can be polarized because their oscillations are perpendicular to the direction of propagation, allowing for filtering based on the orientation of their oscillations.
+    year: 2023,
+  },
+  
+  {
+    question: "What is correct for all transverse waves: ",
+    options: ["They will involve the oscillation of the atoms", "They all can be polarized", "They can travel through a vacuum", "Both (a) & (c) are correct"],
+    correctAnswer: "They all can be polarized",
+    explanation:
+      `Transverse waves, such as light waves, can be polarized because their oscillations are perpendicular to the direction of propagation, allowing for filtering based on the orientation of their oscillations.
 `,
-        },
-        {
-    question:"A 90 cm long string with one end clamped and the other free to move transversely is vibrating in its second harmonic. The wavelength of the constituent travelling waves is: ",
-    options: ["10 cm", " 30 cm ", " 40 cm", "120 cm"],
-    correctAnswer: "40 cm",
-    explanation: `For a string with one end clamped and the other end free, the second harmonic will have a wavelength λ = 2 × length of string ÷ n, where n = 2. Thus, λ = 90 cm × 2 / 2 = 40 cm.`,
+    year: 2023,
   },
   {
-    question:"We can hear sound around the corner but cannot see because of: ",
-    options: ["Interference", "Diffraction", "Polarization", "Dispersion"],
+    question: "A 90 cm long string with one end clamped and the other free to move transversely is vibrating in its second harmonic. The wavelength of the constituent travelling waves is:",
+    options: [" 10 cm", " 30 cm", " 40 cm ", "  120 cm"],
+    correctAnswer: "40 cm ",
+    explanation:
+      `For a string with one end clamped and the other end free, the second harmonic will have a wavelength λ = 2 × length of string ÷ n, where n = 2. Thus, λ = 90 cm × 2 / 2 = 40 cm.
+
+`,
+    year: 2023,
+  },
+  {
+    question: "We can hear sound around the corner but cannot see because of:",
+    options: ["Interference  ", " Diffraction", "Polarization", "Dispersion"],
     correctAnswer: "Diffraction",
-    explanation: `Sound waves have longer wavelengths than light waves, allowing them to diffract (bend) around obstacles like corners. Light, with its much shorter wavelength, cannot diffract as easily. 
+    explanation:
+      `Sound waves have longer wavelengths than light waves, allowing them to diffract (bend) around obstacles like corners. Light, with its much shorter wavelength, cannot diffract as easily. 
 `,
+    year: 2023,
   },
   {
-    question:"In which medium sound waves travel faster: ",
-    options: ["Water", "Steel", "Air", "Vacuum"],
-    correctAnswer: "Steel",
-    explanation: `Sound waves travel faster in solids than in liquids or gases because the molecules in solids are more tightly packed, which allows sound waves to propagate more quickly. Steel, being a solid, has a much higher speed of sound compared to air or water.`,
+    question: "In which medium sound waves travel faster: ",
+    options: [" Water", "Steel ", "Air", "Vacuum"],
+    correctAnswer: "Steel  ",
+    explanation:
+      `Sound waves travel faster in solids than in liquids or gases because the molecules in solids are more tightly packed, which allows sound waves to propagate more quickly. Steel, being a solid, has a much higher speed of sound compared to air or water.
+`,
+    year: 2023,
   },
   {
-    question:"In a progressive wave, energy is transported in:",
+    question: " In a progressive wave, energy is transported in:",
     options: ["The direction of wave propagation", "Opposite to the direction of wave propagation", "Perpendicular to the wavefront", "In all directions uniformly"],
     correctAnswer: "The direction of wave propagation",
-    explanation: `In a progressive (traveling) wave, energy is transferred from one point to another in the direction of the wave’s movement.
+    explanation:
+      `In a progressive (traveling) wave, energy is transferred from one point to another in the direction of the wave’s movement.
 `,
+    year: 2023,
   },
   {
-    question:"Which of the following has the largest wavelength?",
-    options: ["Infrared waves", "Radio waves ", "X-rays", "Gamma rays"],
-    correctAnswer: "Steel",
-    explanation: `Radio waves have the longest wavelength among the electromagnetic spectrum, ranging from about 1 millimeter to 100 kilometers.`,
-  },
-  {
-    question:"The fundamental frequency of a closed organ pipe is f. If both the ends are opened, then its fundamental frequency will be",
-    options: ["f", "0.5f", "2f", "4f"],
-    correctAnswer: "2f",
-    explanation: `The fundamental frequency of a closed organ pipe is determined by the length of the pipe and the speed of sound. If both ends are opened, the pipe now supports a different mode of vibration, doubling the fundamental frequency.
+    question: " Which of the following has the largest wavelength?",
+    options: [" Infrared waves", " Radio waves ", "X-rays", "Gamma rays"],
+    correctAnswer: " Radio waves",
+    explanation:
+      `Radio waves have the longest wavelength among the electromagnetic spectrum, ranging from about 1 millimeter to 100 kilometers.
 `,
+    year: 2023,
+  },
+
+  
+  {
+    question: "The fundamental frequency of a closed organ pipe is f. If both the ends are opened, then its fundamental frequency will be:",
+    options: [" f", "0.5 f", "2 f", "4 f"],
+    correctAnswer: "2 f",
+    explanation:
+      `The fundamental frequency of a closed organ pipe is determined by the length of the pipe and the speed of sound. If both ends are opened, the pipe now supports a different mode of vibration, doubling the fundamental frequency.
+`,
+    year: 2022,
   },
   
+  // Add more questions as needed
+];
+
+totalQNo.innerText = questions.length;
+
+let selectedOption = null;
+let previousSelectedOption = null
+let currentMCQ = 0;
+
+function selectOption(option) {
+  if (selectedOption) {
+    selectedOption.classList.remove("selected");
+  }
+  selectedOption = option;
+  option.classList.add("selected");
+}
+
+function showMCQ(index) {
+  curQNo.innerText = index + 1;
+  questionLabel.innerText = index + 1;
+  const questionData = questions[index];
+  document.querySelector(".cur-q").textContent = questionData.question;
+  document.querySelector(".question-year").textContent = questionData.year;
+  const options = document.querySelectorAll(".option-label-2");
+  options.forEach((option, i) => {
+    option.textContent = questionData.options[i];
+    option.setAttribute(
+      "data-correct",
+      questionData.options[i] === questionData.correctAnswer
+    );
+    option.classList.remove("selected", "correct", "wrong");
+  });
+}
+
+function nextQuestion() {
+  if (!selectedOption) {
+    alert("Please select an option!");
+    return;
+  }
+  var selectionOption = document.querySelector(".option.selected");
+  var secondChild = selectionOption.querySelectorAll(".option-label-2")[0];
+  var isCorrect = secondChild.getAttribute("data-correct");
+  if (isCorrect == "true") {
+    selectedOption.classList.add("correct");
+  } else {
+    selectedOption.classList.add("wrong");
+  }
+
+  setTimeout(function () {
+    document.querySelector(".quiz-container").style.display = "none";
+    document.getElementById("explanation").style.display = "block";
+    document.querySelector("#explanation .question-text").textContent =
+      questions[currentMCQ].question;
+    document.querySelector(
+      "#explanation h3"
+    ).textContent = `Correct Answer: ${questions[currentMCQ].correctAnswer}`;
+    document.querySelector("#explanation p").textContent =
+      questions[currentMCQ].explanation;
+  }, 2000);
+}
+
+function handleNext() {
+
+  currentMCQ++;
+  if (currentMCQ >= questions.length) {
+    currentMCQ = questions.length - 1; // Stay at the last question
+  }
+  document.querySelector(".quiz-container").style.display = "block";
+  document.getElementById("explanation").style.display = "none";
+  selectedOption.classList.remove("selected");
+  selectedOption.classList.remove("wrong");
+  selectedOption.classList.remove("correct");  
+
+  showMCQ(currentMCQ);
+}
+
+function handlePrevious() {
+  currentMCQ--;
+  if (currentMCQ < 0) {
+    currentMCQ = 0; 
+  }
   
-        // Add more questions as needed   
-      ];
+  document.querySelector(".quiz-container").style.display = "block";
+  document.getElementById("explanation").style.display = "none";
 
-      totalQNo.innerText = questions.length;
+  if (previousSelectedOption) {
+    previousSelectedOption.classList.remove("selected");
+    previousSelectedOption.classList.remove("wrong");
+    previousSelectedOption.classList.remove("correct");
+  }
 
-      let selectedOption = null;
-      let currentMCQ = 0;
+  const currentSelectedOption = document.querySelector(".option.selected"); 
+  if (currentSelectedOption) {
+    const secondChild = currentSelectedOption.querySelectorAll(".option-label-2")[0];
+    const isCorrect = secondChild.getAttribute("data-correct");
+    
+    if (isCorrect === "true") {
+      currentSelectedOption.classList.add("correct");
+      currentSelectedOption.classList.remove("wrong");
+    } else {
+      currentSelectedOption.classList.add("wrong");
+      currentSelectedOption.classList.remove("correct");
+    }
+    previousSelectedOption = currentSelectedOption;
+  }
 
-      function selectOption(option) {
-        if (selectedOption) {
-          selectedOption.classList.remove("selected");
-        }
-        selectedOption = option;
-        option.classList.add("selected");
-      }
+  showMCQ(currentMCQ);
+}
 
-      function showMCQ(index) {
-        curQNo.innerText = index + 1;
-        const questionData = questions[index];
-        document.querySelector(".cur-q").textContent = questionData.question;
-        const options = document.querySelectorAll(".option-label-2");
-        options.forEach((option, i) => {
-          option.textContent = questionData.options[i];
-          option.setAttribute(
-            "data-correct",
-            questionData.options[i] === questionData.correctAnswer
-          );
-          option.classList.remove("selected", "correct", "wrong");
-        });
-      }
 
-      function nextQuestion() {
-        if (!selectedOption) {
-          alert("Please select an option!");
-          return;
-        }
-        const isCorrect =
-          selectedOption.getAttribute("data-correct") === "true";
-        if (isCorrect) {
-          selectedOption.classList.add("correct");
-        } else {
-          selectedOption.classList.add("wrong");
-          document
-            .querySelector('.option[data-correct="true"]')
-            .classList.add("correct");
-        }
+document
+  .querySelector(".btn-next-explanation")
+  .addEventListener("click", handleNext);
+document
+  .querySelector(".btn-previous-2")
+  .addEventListener("click", handlePrevious);
+console.log(currentMCQ);
 
-        setTimeout(function () {
-          document.querySelector(".quiz-container").style.display = "none";
-          document.getElementById("explanation").style.display = "block";
-          document.querySelector("#explanation .question-text").textContent =
-            questions[currentMCQ].question;
-          document.querySelector(
-            "#explanation h3"
-          ).textContent = `Correct Answer: ${questions[currentMCQ].correctAnswer}`;
-          document.querySelector("#explanation p").textContent =
-            questions[currentMCQ].explanation;
-        }, 2000);
-      }
+showMCQ(currentMCQ);
 
-      function handleNext() {
-        currentMCQ++;
-        if (currentMCQ >= questions.length) {
-          currentMCQ = questions.length - 1; // Stay at the last question
-        }
-        document.querySelector(".quiz-container").style.display = "block";
-        document.getElementById("explanation").style.display = "none";
-        selectedOption = null;
-        showMCQ(currentMCQ);
-      }
+  </script>
+</body>
 
-      function handlePrevious() {
-        currentMCQ--;
-        if (currentMCQ <= 0) {
-          currentMCQ = 0; // Stay at the first question
-        }
-        document.querySelector(".quiz-container").style.display = "block";
-        document.getElementById("explanation").style.display = "none";
-        selectedOption = null;
-        showMCQ(currentMCQ);
-      }
-
-      document
-        .querySelector(".btn-next-explanation")
-        .addEventListener("click", handleNext);
-      document
-        .querySelector(".btn-previous-2")
-        .addEventListener("click", handlePrevious);
-      console.log(currentMCQ);
-
-      showMCQ(currentMCQ);
-    </script>
-  </body>
 </html>
